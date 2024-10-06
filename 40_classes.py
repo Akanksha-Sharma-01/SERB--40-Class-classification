@@ -50,7 +50,7 @@ ff_dim = 64     # Hidden layer size in feed forward network inside transformer
 def positionalEmbedding(input,maxlen,embed_dim):
 	position = tf.range(start=0, limit=maxlen, delta=1)
 	emm = layers.Embedding(input_dim=maxlen, output_dim=embed_dim, input_length=maxlen, name="embd")(position)
-	input = layers.Reshape([-1, maxlen, embed_dim])(input)#tf.reshape(input, [-1, maxlen, embed_dim])
+	input = tf.reshape(input, [-1, maxlen, embed_dim])
 	output = input + emm
 	return output
 
